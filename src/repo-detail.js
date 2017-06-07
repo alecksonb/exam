@@ -35,4 +35,5 @@ RepoDetail.propTypes = {
     shouldRedirect: bool.isRequired,
     repo: object.isRequired
 }
+
 export default RepoDetail;

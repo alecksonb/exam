@@ -13,12 +13,14 @@ class App extends Component {
         username: '',
         loading: false
     }
+
     handleNewSearch = () => {
       this.setState({
         repos: [],
         username: ''
-      })        
+      })
     }
+
     handleUsernameSubmit = (username) => {
         this.setState({loading:true, username:username})
         return axios.get(`https://api.github.com/users/${username}/repos`)
@@ -37,15 +39,8 @@ class App extends Component {
             });
     }
   render() {
-    let loadingIndicator = null;
-    if (this.state.loading) {
-      loadingIndicator = <Loading />
-    }
-    let repoList = null;
-    if (this.state.repos.length >= 1) {
-      loadingIndicator = <RepoList repos={this.state.repos} username={this.state.username}/>
-    }
-
+    let loadingIndicator = (this.state.loading) ? <Loading /> : null;
+    let repoList = (this.state.repos.length >= 1) ? <RepoList repos={this.state.repos} username={this.state.username}/> : null;
     return (
       <Router>
         <div className="App">

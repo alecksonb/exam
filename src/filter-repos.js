@@ -5,8 +5,8 @@ class FilterRepo extends Component {
     state = {
         selectedLanguage: ''
     }
+
     handleChange = (event) => {
-        console.log(`langauge changed to ${event.target.value}`)
         this.setState({selectedLanguage: event.target.value});
         this.props.onChangeFilter(event.target.value);
     }

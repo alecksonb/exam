@@ -6,6 +6,7 @@ class Search extends Component {
         username: '',
         error: null
     }
+
     handleChange = (event) => {
         this.setState({
             username: event.target.value,
@@ -13,17 +14,17 @@ class Search extends Component {
         });
         this.props.newSearch();
     }
+
     handleSubmit = (event) => {
         this.props.onSubmit(this.state.username)
             .then(() => {
                 this.setState({ username: '', error: null })
             })
             .catch(() => {
-                this.setState({
-                    error: 'Unknown username!'
-                })
+                this.setState({ error: 'Unknown username!' })
             })
     }
+
     render() {
         let potentialError = null;
         if (this.state.error) {
@@ -31,7 +32,7 @@ class Search extends Component {
         }
         return(
             <div className="row">
-                <div className="medium-6 columns medium-centered">             
+                <div className="medium-6 columns medium-centered">
                     {potentialError}
                     <div className="">
                         <label>Search repositories by username</label>
