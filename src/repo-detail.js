@@ -1,10 +1,15 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
+import { bool, object } from 'prop-types';
 
-const RepoHome = () => {
+const RepoDetail = (props) => {
+    if (props.shouldRedirect) {
+        return <Redirect to="/" />
+    }
     return(
         <div className="row">
             <div className="medium-6 columns medium-centered">
-                <h2 style={{marginLeft:'15px'}}>repo_name details</h2>                
+                <h2 style={{marginLeft:'15px'}}>{props.repo.name} details</h2>                
                 <table className="table" >
                     <thead>
                         <tr>
@@ -15,9 +20,9 @@ const RepoHome = () => {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>32</td>
-                            <td>6</td>
-                            <td>JavaScript</td>
+                            <td>{props.repo.stargazers_count}</td>
+                            <td>{props.repo.forks_count}</td>
+                            <td>{props.repo.language}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -26,4 +31,8 @@ const RepoHome = () => {
     )
 }
 
-export default RepoHome;
+RepoDetail.propTypes = {
+    shouldRedirect: bool.isRequired,
+    repo: object.isRequired
+}
+export default RepoDetail;
